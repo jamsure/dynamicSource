@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jydw.mqtt.mapper.TbCameraMapper">
+
+    <select id="get" resultType="org.jydw.mqtt.entity.TbCamera">
+		select
+          a.key_id AS "keyId",
+          a.code AS "code",
+          a.name AS "name",
+          a.aliasname AS "aliasname",
+          a.device_id AS "deviceId",
+          a.channel_num AS "channelNum",
+          a.sms_id AS "smsId",
+          a.bak_sms_id AS "bakSmsId",
+          a.rms_id AS "rmsId",
+          a.bak_rms_id AS "bakRmsId",
+          a.stream_type AS "streamType",
+          a.protocol AS "protocol",
+          a.url AS "url",
+          a.reservered1 AS "reservered1",
+          a.reservered2 AS "reservered2",
+          a.stream_format AS "streamFormat"
+        from tb_camera a
+        <where>
+          <if test="keyId != null and keyId != ''">
+            and key_id = #{keyId}
+          </if>
+        </where>
+	</select>
+
+    <select id="getList" resultType="org.jydw.mqtt.entity.TbCamera">
+		select
+          a.key_id AS "keyId",
+          a.code AS "code",
+          a.name AS "name",
+          a.aliasname AS "aliasname",
+          a.device_id AS "deviceId",
+          a.channel_num AS "channelNum",
+          a.sms_id AS "smsId",
+          a.bak_sms_id AS "bakSmsId",
+          a.rms_id AS "rmsId",
+          a.bak_rms_id AS "bakRmsId",
+          a.stream_type AS "streamType",
+          a.protocol AS "protocol",
+          a.url AS "url",
+          a.reservered1 AS "reservered1",
+          a.reservered2 AS "reservered2",
+          a.stream_format AS "streamFormat"
+        from tb_camera a
+        <where>
+          <if test="keyId != null and keyId != ''">
+            and key_id = #{keyId}
+          </if>
+        </where>
+	</select>
+
+
+</mapper>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jydw.mqtt.mapper.MqttMapper">
+
+    <select id="getRulesByDeviceIdAndPresetNo" resultType="java.util.Map">
+       SELECT
+        r.key_id AS "keyId",
+        r.detect_rules_id AS "detectRulesId",
+        r.fault_degree_id AS "faultDegreeId",
+        r.formula AS "formula",
+        r.des_of_formula AS "desOfFormula",
+        r.fault_feature AS "faultFeature",
+        r.image_feature AS "imageFeature",
+        r.handing_suggrestion AS "handingSuggrestion",
+        r.des AS "des"
+    FROM ir_formula_of_detect_rules r
+    WHERE detect_rules_id  in (
+    SELECT a.detect_rules_id
+    from ir_preset a
+    LEFT JOIN ir_favorite_content b ON a.ir_camera_id = b.camera_id and a.favorite_id = b.favorite_id
+    WHERE b.device_id = #{deviceId}
+    and a.preset_no = #{presetNo})
+    </select>
+
+</mapper>
